@@ -1,21 +1,17 @@
-import mysql.connector as connection
+import mysql.connector
 
-mydb = connection.connect(host="localhost", user="root", password="mysql123")
+mydb = mysql.connector.connect(host="localhost", user="root", password="mysql123")
 print(mydb)
 
 cursor = mydb.cursor()
-
-cursor.execute("create database lakshya")  # create database
-cursor.execute("show databases")
-
+cursor.execute("CREATE DATABASE test")  # Create database
+cursor.execute("SHOW DATABASES")
 for database in cursor:
     print(database)
 
-cursor.execute("use lakshya")
-cursor.execute(
-    "create table laksdetails(employee_id int(10), employee_name varchar(80), employee_mail varchar(20), employee_sal int(6),employee_att int(2))")
-
-cursor.execute("select * from laksdetails")
+cursor.execute("USE test")
+cursor.execute("CREATE TABLE testdetails(employee_id INT(10), employee_name VARCHAR(80), employee_mail VARCHAR(20), employee_sal INT(6), employee_att INT(2))")
+cursor.execute("SELECT * FROM testdetails")
 print(cursor.fetchall())
 
 cursor.close()
